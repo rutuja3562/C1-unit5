@@ -1,26 +1,29 @@
 import { useState } from "react";
 export const Inventory = () => {
-  const [inv, setInv] = useState({
-    books: 10,
-    notebooks: 13,
-    pens: 40,
-    inkpens:0
-  });
+  const [books, setBooks] = useState(10);
+  const [notebooks, setNotebooks] = useState(13);
+  const [pens, setPens] = useState(40);
+  const [inkpens, setInkpens] = useState(0);
+  const [totalcount,setTotalcount]=useState(63)
+
   // Create add and remove functions here that changes the
   // state.
-  const handleClick = (val) => {
-    setInv({
-      ...inv,
-      [val]: inv[val] + 1,
-      
-    });
+  const handleClick = (value) => {
+    setBooks(books + value);
+    setTotalcount(totalcount+value);
   };
-   const handleClicksub= (val) => {
-     setInv({
-       ...inv,
-       [val]: inv[val] - 1,
-     });
-   };
+  const handleClickNotebook = (value) => {
+    setNotebooks(notebooks + value);
+    setTotalcount(totalcount+value)
+  };
+  const handleClickInkpens = (value) => {
+    setInkpens(inkpens + value);
+  setTotalcount(totalcount+value)
+  };
+  const handleClickPens = (value) => {
+    setPens(pens + value);
+    setTotalcount(totalcount+value)
+  };
   return (
     <div
       style={{
@@ -33,71 +36,59 @@ export const Inventory = () => {
       }}
     >
       <div className="items">
-        <span>Books:{inv.books} </span>
-        <button
-          className="circlularButton"
-          onClick={handleClick.bind(null, "books")}
-        >
+        <span>Books:{books} </span>
+        <button className="circlularButton" onClick={() => handleClick(1)}>
           +
         </button>
-        <button
-          className="circlularButton"
-          onClick={handleClicksub.bind(null, "books")}
-        >
+        <button className="circlularButton" onClick={() => handleClick(-1)}>
           -
         </button>
-        <span>{inv.books}</span>
+        <span>{books}</span>
       </div>
       <div className="items">
-        <span>Notebooks:{inv.notebooks} </span>
+        <span>Notebooks:{notebooks} </span>
         <button
           className="circlularButton"
-          onClick={handleClick.bind(null, "notebooks")}
+          onClick={() => handleClickNotebook(1)}
         >
           +
         </button>
         <button
           className="circlularButton"
-          onClick={handleClicksub.bind(null, "notebooks")}
+          onClick={() => handleClickNotebook(-1)}
         >
           -
         </button>
-        <span>{inv.notebooks}</span>
+        <span>{notebooks}</span>
       </div>
       <div className="items">
-        <span>Pen:{inv.pens} </span>
-        <button
-          className="circlularButton"
-          onClick={handleClick.bind(null, "pens")}
-        >
+        <span>Pen:{pens} </span>
+        <button className="circlularButton" onClick={() => handleClickPens(1)}>
           +
         </button>
-        <button
-          className="circlularButton"
-          onClick={handleClicksub.bind(null, "pens")}
-        >
+        <button className="circlularButton" onClick={() => handleClickPens(-1)}>
           -
         </button>
-        <span>{inv.pens}</span>
+        <span>{pens}</span>
       </div>
       <div className="items">
-        <span>Ink Pens:{inv.inkpens} </span>
+        <span>Ink Pens:{inkpens} </span>
         <button
           className="circlularButton"
-          onClick={handleClick.bind(null,"inkpens" )}
+          onClick={() => handleClickInkpens(+1)}
         >
           +
         </button>
         <button
           className="circlularButton"
-          onClick={handleClicksub.bind(null,"inkpens" )}
+          onClick={() => handleClickInkpens(-1)}
         >
           -
         </button>
-        <span>{inv.inkpens}</span>
+        <span>{inkpens}</span>
       </div>
-      calculate total and show it
-      total: {87}
+      {/* calculate total and show it */}
+      total: {totalcount}
     </div>
   );
 };
