@@ -1,9 +1,9 @@
 import { useState } from "react";
 import "./App.css"
 function App() {
-  const [addScore1, setAddScore1] = useState(0);
-  const [addWicket, setAddWicket] = useState(0);
-  const [addBall, setAddBall] = useState(0);
+  const [addScore1, setAddScore1] = useState(76);
+  const [addWicket, setAddWicket] = useState(2);
+  const [addBall, setAddBall] = useState(50);
 
   const handleClickone = (value) => {
     setAddScore1(addScore1 + value);
@@ -38,15 +38,20 @@ function App() {
         </div>
 
         <div>
-          Over:{addBall % 6 === 0 ? Math.floor(addBall / 6) : addBall % 6}
+          Over:
+          {addBall % 6 === 0
+            ? (Math.floor(addBall / 6))
+            : (addBall % 6, Math.floor(addBall / 6))}
           <h1 className="overCount">
             {
               // Show Over here in the format: "over.ball" eg: 4.5 means 4th over and 5th ball
               // if 1 more ball is thrown then over is now 5.0
               // you have to write logic to form this string from current ball number.
               // { addBall }
-              addBall % 6 === 0 ? Math.floor(addBall / 6) : addBall % 6
-            }
+              addBall % 6 === 0
+            ? (Math.floor(addBall / 6))
+            : (addBall % 6, Math.floor(addBall / 6))}
+            
           </h1>
         </div>
       </div>
@@ -68,7 +73,7 @@ function App() {
       <div className="addWicket">
         Add Wicket
         {/* Increase the count of wicket */}
-        <button onClick={() => handleClickwicket(+1)}>Add 1 wicket</button>
+        <button onClick={() =>{if( addWicket < 12)(handleClickwicket(+1))}}>Add 1 wicket</button>
       </div>
 
       <div className="addBall">
